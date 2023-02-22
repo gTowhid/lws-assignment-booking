@@ -1,11 +1,22 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { remove } from '../redux/show/actions';
 
-export default function Preview() {
-  const location = useSelector((state) => state.location);
-  const destination = useSelector((state) => state.destination);
-  const date = useSelector((state) => state.date);
-  const guests = useSelector((state) => state.guests);
-  const cabin = useSelector((state) => state.cabin);
+export default function Preview({ id }) {
+  const state = useSelector((state) => state);
+
+  const concernState = state.filter((el) => el.id === id);
+
+  const location = concernState[0].location;
+  const destination = concernState[0].destination;
+  const date = concernState[0].date;
+  const guests = concernState[0].guests;
+  const cabin = concernState[0].cabin;
+
+  const dispatch = useDispatch();
+
+  const removeHandler = (id) => {
+    dispatch(remove(id));
+  };
 
   return (
     <tr class="lws-bookedTable text-black">
@@ -28,7 +39,7 @@ export default function Preview() {
       </td>
       <td class="px-6 py-4 text-center">
         <div class="flex justify-center gap-4">
-          <button class="lws-remove">
+          <button class="lws-remove" id={id} onClick={() => removeHandler(id)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

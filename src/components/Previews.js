@@ -1,7 +1,12 @@
 /* eslint-disable no-unused-vars */
+import { useSelector } from 'react-redux';
 import Preview from './Preview';
 
 export default function Previews() {
+  const state = useSelector((state) => state);
+
+  // console.log(state);
+
   return (
     <div>
       <div class="table-container">
@@ -17,7 +22,9 @@ export default function Previews() {
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-300/20" id="lws-previewBooked">
-            <Preview />
+            {state.map(
+              (el) => el.location && <Preview key={el.id} id={el.id} />
+            )}
           </tbody>
         </table>
       </div>

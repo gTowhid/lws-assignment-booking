@@ -1,4 +1,3 @@
-/* eslint-disable no-unreachable */
 import { useDispatch } from 'react-redux';
 import frame from '../assets/icons/Frame.svg';
 import vector1 from '../assets/icons/Vector (1).svg';
@@ -8,6 +7,8 @@ import { book } from '../redux/show/actions';
 
 export default function Input() {
   const dispatch = useDispatch();
+
+  let id = 0;
 
   const interState = {
     location: '',
@@ -19,8 +20,8 @@ export default function Input() {
 
   const bookHandler = (e) => {
     e.preventDefault();
-    dispatch(book(interState));
-    console.log(interState);
+      dispatch(book(interState, id));
+      id++;
   };
 
   return (
