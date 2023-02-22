@@ -1,11 +1,8 @@
-/* eslint-disable no-unused-vars */
 import { useSelector } from 'react-redux';
 import Preview from './Preview';
 
 export default function Previews() {
   const state = useSelector((state) => state);
-
-  // console.log(state);
 
   return (
     <div>

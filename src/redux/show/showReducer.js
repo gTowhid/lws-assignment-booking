@@ -42,13 +42,15 @@ const showReducer = (state = initialState, action) => {
     case REMOVE:
       const id = action.id;
       const removedState = [...state];
+      var removalIndex;
 
-      const concernState = removedState.filter((el) => el.id === id);
-      const index = removedState.indexOf(concernState);
+      removedState.forEach((el, index) => {
+        if (el.id === id) {
+          removalIndex = index;
+        }
+      });
 
-      removedState.splice(index, 1);
-
-      // console.log(removedState, id);
+      removedState.splice(removalIndex, 1);
 
       return removedState;
     default:
