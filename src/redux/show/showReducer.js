@@ -40,19 +40,7 @@ const showReducer = (state = initialState, action) => {
       return newState;
 
     case REMOVE:
-      const id = action.id;
-      const removedState = [...state];
-      var removalIndex;
-
-      removedState.forEach((el, index) => {
-        if (el.id === id) {
-          removalIndex = index;
-        }
-      });
-
-      removedState.splice(removalIndex, 1);
-
-      return removedState;
+      return state.filter((el) => el.id !== action.id);
     default:
       return state;
   }
